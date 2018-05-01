@@ -1,0 +1,11 @@
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\bin\Release\netcoreapp2.0\CourseProject_Stepovyi.deps.json
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\bin\Release\netcoreapp2.0\CourseProject_Stepovyi.runtimeconfig.json
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\bin\Release\netcoreapp2.0\CourseProject_Stepovyi.runtimeconfig.dev.json
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\bin\Release\netcoreapp2.0\CourseProject_Stepovyi.dll
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\bin\Release\netcoreapp2.0\CourseProject_Stepovyi.pdb
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.csprojResolveAssemblyReference.cache
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.csproj.CoreCompileInputs.cache
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.AssemblyInfoInputs.cache
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.AssemblyInfo.cs
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.dll
+F:\aKPI\CourseProject_Stepovyi\CourseProject_Stepovyi\obj\Release\netcoreapp2.0\CourseProject_Stepovyi.pdb

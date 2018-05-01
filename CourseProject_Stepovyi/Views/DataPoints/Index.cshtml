@@ -4,40 +4,44 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<head>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<div class="buttons" style="margin: auto; width: 30%;">
+    <br /><a class="btn btn-success" style="font-size:170%" asp-action="Graph">Build Graph</a>
+</div>
+<br /><a class="btn btn-primary" asp-action="Create">Add Dot</a>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.x)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.y)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.x)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.y)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+    <tbody>
         @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.x)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.y)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-        <a asp-action="Graph">Build_Graph</a>
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.x)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.y)
+                </td>
+                <td>
+                    <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+
     </tbody>
 </table>

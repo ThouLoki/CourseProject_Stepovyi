@@ -7,11 +7,7 @@
     <title>Index</title>
 </head>
 <body>
-    <br>
-    <br>
-    @ViewBag.debug
-    <br>
-    <br>
+    <br><br>
     <div id="chartContainer"></div>
 
     <script type="text/javascript">
@@ -21,19 +17,26 @@
                 theme: "theme2",
 				animationEnabled: true,
 				title: {
-                text: "Simple Column Chart in ASP.NET MVC"
+                text: ""
 
                 },
 				subtitles: [
 
                     { text: "" }
 				],
-				data: [
-
-                {
+                data:
+                [
+                    {
+                            type: "line", //change type to bar, line, area, pie, etc
+                            dataPoints: JavaScriptArray /*JavaScriptArray*/
+				    },
+                    {
                         type: "line", //change type to bar, line, area, pie, etc
-                        dataPoints: JavaScriptArray
-				}
+                        dataPoints: [{ x: 11, y: 16 },
+                        { x: 16, y: 28 },
+                        { x: 21, y: 25 }]
+
+                        }
 				]
 			});
         chart.render();

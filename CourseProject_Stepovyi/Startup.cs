@@ -42,6 +42,7 @@ namespace CourseProject_Stepovyi
                 app.UseExceptionHandler("/Home/Error");
             }
 
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
