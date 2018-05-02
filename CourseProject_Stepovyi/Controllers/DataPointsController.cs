@@ -35,17 +35,31 @@ namespace CourseProject_Stepovyi.Controllers
         {
             Random random = new Random();
             List<DataPoint> temp2 = new List<DataPoint> { };
-            double rndtempx = 0;
-            double rndtempy = 0;
-            for (int i = 0; i < rnd.DotsCount; i++)
+            double rndtempx = rnd.x_start_point;
+            double rndtempy = rnd.y_start_point;
+            temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
+            for (int i = 0; i < rnd.DotsCount-1; i++)
             {
-                rndtempx += Math.Round(random.NextDouble(0.11, 1.99), 3);
-                rndtempy += Math.Round(random.NextDouble(0.11, 1.99), 3);
+                rndtempx += Math.Round(random.NextDouble(rnd.x_from, rnd.x_to), 3);
+                rndtempy += Math.Round(random.NextDouble(rnd.y_from, rnd.y_to), 3);
                 temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
             }
             _context.DataPoint.AddRange(temp2);
             _context.SaveChanges();
             return RedirectToAction("Index");
+            //Random random = new Random();
+            //List<DataPoint> temp2 = new List<DataPoint> { };
+            //decimal rndtempx = rnd.x_start_point;
+            //decimal rndtempy = rnd.y_start_point;
+            //for (int i = 0; i < rnd.DotsCount; i++)
+            //{
+            //    rndtempx += Convert.ToDecimal(Math.Round(random.NextDouble(Convert.ToDouble(rnd.x_from), Convert.ToDouble(rnd.x_to)), 3));
+            //    rndtempy += Convert.ToDecimal(Math.Round(random.NextDouble(Convert.ToDouble(rnd.y_from), Convert.ToDouble(rnd.y_to)), 3));
+            //    temp2.Add(new DataPoint { x = Convert.ToDouble(rndtempx), y = Convert.ToDouble(rndtempy) });
+            //}
+            //_context.DataPoint.AddRange(temp2);
+            //_context.SaveChanges();
+            //return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Graph()
