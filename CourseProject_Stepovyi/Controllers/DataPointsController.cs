@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CourseProject_Stepovyi.Models;
-
+using CourseProject_Stepovyi.ViewModels;
 namespace CourseProject_Stepovyi.Controllers
 {
     public class DataPointsController : Controller
@@ -24,14 +25,39 @@ namespace CourseProject_Stepovyi.Controllers
             return View(await _context.DataPoint.ToListAsync());
         }
 
-        public IActionResult Graph(string kappakeepo)
+        public IActionResult RandomData()
         {
-            ViewData["Message"] = "Your  page.";
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RandomData(RandomDataViewModel rnd)
+        {
+            Random random = new Random();
+            List<DataPoint> temp2 = new List<DataPoint> { };
+            double rndtempx = 0;
+            double rndtempy = 0;
+            for (int i = 0; i < rnd.DotsCount; i++)
+            {
+                rndtempx += Math.Round(random.NextDouble(0.11, 1.99), 3);
+                rndtempy += Math.Round(random.NextDouble(0.11, 1.99), 3);
+                temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
+            }
+            _context.DataPoint.AddRange(temp2);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Graph()
+        {
             List<DataPoint> temp = new List<DataPoint> { };
             temp = _context.DataPoint.ToList<DataPoint>();
             ViewBag.DataPoints = temp;
             return View();
         }
+
+
+
 
         // GET: DataPoints/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -156,6 +182,14 @@ namespace CourseProject_Stepovyi.Controllers
         private bool DataPointExists(int id)
         {
             return _context.DataPoint.Any(e => e.ID == id);
+        }
+
+        public IActionResult Banish()
+        {
+            var itemsToDelete = _context.DataPoint.Where(x => x.x > -10000);
+            _context.DataPoint.RemoveRange(itemsToDelete);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

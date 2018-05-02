@@ -49,7 +49,7 @@ namespace CourseProject_Stepovyi
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=DataPoints}/{action=Index}/{id?}");
+                    template: "{controller=DataPoints}/{action=RandomData}/{id?}");
             });
         }
     }

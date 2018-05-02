@@ -1,4 +1,4 @@
-﻿
+﻿<h1>@ViewBag.random</h1>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,18 +29,26 @@
                     {
                             type: "line", //change type to bar, line, area, pie, etc
                             dataPoints: JavaScriptArray /*JavaScriptArray*/
-				    },
-                    {
-                        type: "line", //change type to bar, line, area, pie, etc
-                        dataPoints: [{ x: 11, y: 16 },
-                        { x: 16, y: 28 },
-                        { x: 21, y: 25 }]
+				    }
+                    //,{
+                    //    type: "line", //change type to bar, line, area, pie, etc
+                        //dataPoints: [{ x: 11, y: 16 },
+                        //{ x: 16, y: 28 },
+                        //{ x: 21, y: 25 }]
 
-                        }
+                    //    }
 				]
 			});
         chart.render();
     };
+    </script>
+    <script>
+        var textarea = document.getElementById("Kappa");
+        var heightLimit = 200; /* Maximum height: 200px */
+        textarea.oninput = function () {
+            textarea.style.height = ""; /* Reset the height*/
+            textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
+        };
     </script>
     <script>
         var textarea = document.getElementById("Kappa");

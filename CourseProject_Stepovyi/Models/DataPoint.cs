@@ -8,7 +8,7 @@ namespace CourseProject_Stepovyi.Models
 {
     public class DataPoint
     {
-        //[DataMember(Name = "x")]
+        [DataMember(Name = "x")]
         //[Range(-1000,1000)]
         public double x { get; set; }
         [DataMember(Name = "y")]

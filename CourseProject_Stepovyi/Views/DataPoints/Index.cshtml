@@ -8,11 +8,30 @@
 <head>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<div class="buttons" style="margin: auto; width: 30%;">
-    <br /><a class="btn btn-success" style="font-size:170%" asp-action="Graph">Build Graph</a>
-</div>
+<span class="buttons" style=" ">
+    <br /><a class="btn btn-success" style="font-size:170%; margin-left:20%; margin-right:20px;" asp-action="Graph">Build Graph with current input</a>
+    <a class="btn btn-success" style="font-size:170%" asp-action="RandomData">Switch to random data</a>
+</span>
 <br /><a class="btn btn-primary" asp-action="Create">Add Dot</a>
+      <a class="btn btn-danger" @*asp-action="Banish"*@ data-toggle="modal" data-target=".bootstrapmodal">BANISH</a>
+<div class="modal fade bootstrapmodal">
+    <div class="modal-dialog">
+        <div class=" modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+                <div class="modal-title"><p style="font-size:140%;">Warning</p></div>
+            </div>
+            <div class="modal-body" style="font-size:170%;">
+                <h4 style="margin-left:25%;">This will clear all the dots</h4>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" asp-action="Banish" >Delete</a>
+                <button class="btn btn-default" data-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
 
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -22,6 +41,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.y)
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
