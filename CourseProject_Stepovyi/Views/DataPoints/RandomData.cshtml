@@ -15,32 +15,32 @@
     <h2>How many dots to generate?</h2>
     <form method="post">
         <label>Amount of dots</label><br />
-        <input asp-for="DotsCount" class="input-sm" style="font-size:120%" /><br />
+        <input asp-for="DotsCount" value="" class="input-sm" style="font-size:120%" /><br />
         <span asp-validation-for="DotsCount" class="text-danger"></span><br />
         <div style="display:flex; flex-direction:row;">
             <div>
                 <label>x: start point</label><br />
-                <input asp-for="x_start_point" class="input-sm" style="font-size:120%" /><br />
+                <input asp-for="x_start_point" value="0.1" class="input-sm" style="font-size:120%" /><br />
                 <span asp-validation-for="x_start_point" class="text-danger"></span><br />
                 <label style="margin-left:250px">Errors</label><br />
                 <label>x: from</label><br />
-                <input asp-for="x_from" class="input-sm" style="font-size:120%" /><br />
+                <input asp-for="x_from" value="0.1" class="input-sm" style="font-size:120%" /><br />
                 <span asp-validation-for="x_from" class="text-danger"></span><br />
                 <label>x: to</label><br />
-                <input asp-for="x_to" class="input-sm" style="font-size:120%" /><br />
+                <input asp-for="x_to" class="input-sm" value="1.1" style="font-size:120%"><br />
                 <span asp-validation-for="x_to" class="text-danger"></span><br />
 
             </div>
             <div style="margin-left:40px; margin-top:2px">
                 <label>y: start point</label><br />
-                <input asp-for="y_start_point" class="input-sm" style="font-size:120%" /><br />
+                <input asp-for="y_start_point" value="2.1" class="input-sm" style="font-size:120%" /><br />
                 <span asp-validation-for="y_start_point" class="text-danger"></span><br /><br />
                 <div style=" margin-top:4px">
                     <label>y: from</label><br />
-                    <input asp-for="y_from" class="input-sm" style="font-size:120%" /><br />
+                    <input asp-for="y_from" value="2.1"class="input-sm" style="font-size:120%" /><br />
                     <span asp-validation-for="y_from" class="text-danger"></span><br />
                     <label>y: to</label><br />
-                    <input asp-for="y_to" class="input-sm" style="font-size:120%" /><br />
+                    <input asp-for="y_to" value="3.1" class="input-sm" style="font-size:120%" /><br />
                     <span asp-validation-for="y_to" class="text-danger"></span><br />
                 </div>
             </div>

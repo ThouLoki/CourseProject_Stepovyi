@@ -13,21 +13,21 @@ namespace CourseProject_Stepovyi.ViewModels
         public int DotsCount { get; set; }
         [Required]
         [Range(-100, 100)]
-        public double x_start_point { get; set; }
+        public string x_start_point { get; set; }
         [Required]
         [Range(-100, 100)]
-        public double y_start_point { get; set; }
+        public string y_start_point { get; set; }
         [Required]
         [Range(0, 100)]
-        public double x_from { get; set; }
+        public string x_from { get; set; }
         [Required]
         [Range(0, 100)]
-        public double x_to { get; set; }
+        public string x_to { get; set; }
         [Required]
         [Range(0, 100)]
-        public double y_from { get; set; }
+        public string y_from { get; set; }
         [Required]
         [Range(0, 100)]
-        public double y_to { get; set; }
+        public string y_to { get; set; }
     }
 }

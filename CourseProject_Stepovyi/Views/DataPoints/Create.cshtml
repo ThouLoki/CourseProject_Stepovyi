@@ -1,4 +1,4 @@
-﻿@model CourseProject_Stepovyi.Models.DataPoint
+﻿@model CourseProject_Stepovyi.ViewModels.DataPointsViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="x" class="control-label"></label>
-                <input asp-for="x" class="form-control" />
+                <input asp-for="x"  class="form-control" />
                 <span asp-validation-for="x" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,6 +33,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@section scripts {
+    @{await Html.RenderPartialAsync("_validationscriptspartial");}
 }

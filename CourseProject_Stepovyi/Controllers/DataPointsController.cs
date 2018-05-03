@@ -34,14 +34,35 @@ namespace CourseProject_Stepovyi.Controllers
         public IActionResult RandomData(RandomDataViewModel rnd)
         {
             Random random = new Random();
+            //rnd.x_start_point.Replace(".", ",");
+
+            char dummyChar = '&'; //here put a char that you know won't appear in the strings
+            rnd.x_start_point = rnd.x_start_point.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            rnd.y_start_point = rnd.y_start_point.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            rnd.x_from = rnd.x_from.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            rnd.x_to = rnd.x_to.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            rnd.y_from = rnd.y_from.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            rnd.y_to = rnd.y_to.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
             List<DataPoint> temp2 = new List<DataPoint> { };
-            double rndtempx = rnd.x_start_point;
-            double rndtempy = rnd.y_start_point;
+            double rndtempx = Convert.ToDouble(rnd.x_start_point);
+            double rndtempy = Convert.ToDouble(rnd.y_start_point);
             temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
             for (int i = 0; i < rnd.DotsCount-1; i++)
             {
-                rndtempx += Math.Round(random.NextDouble(rnd.x_from, rnd.x_to), 3);
-                rndtempy += Math.Round(random.NextDouble(rnd.y_from, rnd.y_to), 3);
+                rndtempx += Math.Round(random.NextDouble(Convert.ToDouble(rnd.x_from), Convert.ToDouble(rnd.x_to)), 3);
+                rndtempy += Math.Round(random.NextDouble(Convert.ToDouble(rnd.y_from), Convert.ToDouble(rnd.y_to)), 3);
                 temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
             }
             _context.DataPoint.AddRange(temp2);
@@ -102,11 +123,22 @@ namespace CourseProject_Stepovyi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("x,y,ID")] DataPoint dataPoint)
+        public async Task<IActionResult> Create([Bind("x,y,ID")] DataPointsViewModel dataPoint)
         {
+
+            char dummyChar = '&'; //here put a char that you know won't appear in the strings
+            dataPoint.x = dataPoint.x.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            dataPoint.y = dataPoint.y.Replace('.', dummyChar)
+                                   .Replace(',', '.')
+                                   .Replace(dummyChar, ',');
+            DataPoint temp = new DataPoint { };
+            temp.x = Convert.ToDouble(dataPoint.x);
+            temp.y= Convert.ToDouble(dataPoint.y);
             if (ModelState.IsValid)
             {
-                _context.Add(dataPoint);
+                _context.Add(temp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
