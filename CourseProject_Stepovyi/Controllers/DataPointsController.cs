@@ -85,9 +85,16 @@ namespace CourseProject_Stepovyi.Controllers
         [HttpGet]
         public IActionResult Graph()
         {
+            double error = 0;
             List<DataPoint> temp = new List<DataPoint> { };
+            List<DataPoint> temp1 = new List<DataPoint> { };
             temp = _context.DataPoint.ToList<DataPoint>();
+            if (temp.Count() == 0)
+                return RedirectToAction("Index");
+            temp1 = Models.Methods.LeastSquare(temp,out error);
+            ViewBag.LeastSquare = temp1;
             ViewBag.DataPoints = temp;
+            ViewBag.Error = error;
             return View();
         }
 
@@ -136,12 +143,9 @@ namespace CourseProject_Stepovyi.Controllers
             DataPoint temp = new DataPoint { };
             temp.x = Convert.ToDouble(dataPoint.x);
             temp.y= Convert.ToDouble(dataPoint.y);
-            if (ModelState.IsValid)
-            {
                 _context.Add(temp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
             return View(dataPoint);
         }
 

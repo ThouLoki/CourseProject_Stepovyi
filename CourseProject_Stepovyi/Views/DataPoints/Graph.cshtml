@@ -1,4 +1,5 @@
 ﻿<h1>@ViewBag.random</h1>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -12,6 +13,7 @@
 
     <script type="text/javascript">
         var JavaScriptArray = @Html.Raw(Json.Serialize(ViewBag.DataPoints));
+        var result1= @Html.Raw(Json.Serialize(ViewBag.LeastSquare));
         window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer", {
                 theme: "theme2",
@@ -26,22 +28,22 @@
 				],
                 data:
                 [
-                    {
-                            type: "line", //change type to bar, line, area, pie, etc
+                        {
+                            color:"red",
+                            type: "scatter", //change type to bar, line, area, pie, etc
                             dataPoints: JavaScriptArray /*JavaScriptArray*/
 				    }
-                    //,{
-                    //    type: "line", //change type to bar, line, area, pie, etc
-                        //dataPoints: [{ x: 11, y: 16 },
-                        //{ x: 16, y: 28 },
-                        //{ x: 21, y: 25 }]
+                    ,{
+                        type: "line", //change type to bar, line, area, pie, etc
+                        dataPoints: result1
 
-                    //    }
+                        }
 				]
 			});
         chart.render();
     };
     </script>
+
     <script>
         var textarea = document.getElementById("Kappa");
         var heightLimit = 200; /* Maximum height: 200px */
@@ -57,7 +59,7 @@
             textarea.style.height = ""; /* Reset the height*/
             textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
         };
-    </script>
+    </script><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <h4>OLS error = @ViewBag.Error</h4>
 </body>
 </html>
-<p>Use this area to provide additional information.</p>
