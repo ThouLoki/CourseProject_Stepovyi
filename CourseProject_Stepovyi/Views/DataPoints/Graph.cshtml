@@ -13,7 +13,8 @@
 
     <script type="text/javascript">
         var JavaScriptArray = @Html.Raw(Json.Serialize(ViewBag.DataPoints));
-        var result1= @Html.Raw(Json.Serialize(ViewBag.LeastSquare));
+        var result1 = @Html.Raw(Json.Serialize(ViewBag.LeastSquare));
+        var result2= @Html.Raw(Json.Serialize(ViewBag.Module));
         window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer", {
                 theme: "theme2",
@@ -37,6 +38,11 @@
                         type: "line", //change type to bar, line, area, pie, etc
                         dataPoints: result1
 
+                        },
+                        {
+                            color:"blue",
+                            type: "line",
+                            dataPoints: result2
                         }
 				]
 			});
@@ -60,6 +66,10 @@
             textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
         };
     </script><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <h4>OLS error = @ViewBag.Error</h4>
+    <h4>OLS error = @ViewBag.Error</h4><br />
+    <h4>k_least = @ViewBag.k_least</h4><br />
+    <h4>b_least = @ViewBag.b_least</h4><br />
+    <h4>k_module = @ViewBag.k_module</h4><br />
+    <h4>b_module = @ViewBag.b_module</h4><br />
 </body>
 </html>

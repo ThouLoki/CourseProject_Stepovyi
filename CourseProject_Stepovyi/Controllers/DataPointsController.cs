@@ -85,16 +85,24 @@ namespace CourseProject_Stepovyi.Controllers
         [HttpGet]
         public IActionResult Graph()
         {
-            double error = 0;
+            double error = 0,k_least,b_least;
+            double k_module=0, b_module=0;
             List<DataPoint> temp = new List<DataPoint> { };
             List<DataPoint> temp1 = new List<DataPoint> { };
+            List<DataPoint> temp2 = new List<DataPoint> { };
             temp = _context.DataPoint.ToList<DataPoint>();
             if (temp.Count() == 0)
                 return RedirectToAction("Index");
-            temp1 = Models.Methods.LeastSquare(temp,out error);
+            temp1 = Models.Methods.LeastSquare(temp, out error,out k_least, out b_least);
+            temp2 = Models.Methods.Module(temp, out k_module, out b_module);
             ViewBag.LeastSquare = temp1;
+            ViewBag.Module = temp2;
             ViewBag.DataPoints = temp;
             ViewBag.Error = error;
+            ViewBag.k_least = k_least;
+            ViewBag.b_least = b_least;
+            ViewBag.k_module = k_module;
+            ViewBag.b_module = b_module;
             return View();
         }
 
