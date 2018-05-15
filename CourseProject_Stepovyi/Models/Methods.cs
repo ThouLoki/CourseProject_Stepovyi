@@ -43,7 +43,7 @@ namespace CourseProject_Stepovyi.Models
             return result;
         }
 
-        public static List<DataPoint> Module(List<DataPoint> points, out double k, out double b)
+        public static List<DataPoint> Module(List<DataPoint> points, out double k, out double b, out double err_m)
         {
 
             int n = points.Count;
@@ -52,7 +52,7 @@ namespace CourseProject_Stepovyi.Models
 
             for (int i = 0; i < n; i++)
             {
-                table[2 * n, i + 1] = 1;
+                table[2 * n, i + 1] = -1;
 
                 table[i * 2, 0] = points[i].y * (-1);
                 table[i * 2, i + 1] = -1;
@@ -66,12 +66,16 @@ namespace CourseProject_Stepovyi.Models
 
                 if (points[i].x > max_x) max_x = points[i].x;
             }
-
-
+            n = table.GetLength(0);
+            int m = table.GetLength(1);
             double[] result = new double[2];
             result = DualSimplex.Calculate(table);
             k = result[0]; b = result[1];
-
+            err_m = 0;
+            foreach (var a in points)
+            {
+                err_m += Math.Abs(a.y - (k * a.x + b));
+            }
             List<DataPoint> ans = new List<DataPoint>();
             DataPoint p1 = new DataPoint();
             p1.x = 0;
@@ -81,6 +85,7 @@ namespace CourseProject_Stepovyi.Models
             p2.x = max_x;
             p2.y = max_x * k + b;
             ans.Add(p2);
+
 
             return ans;
         }
