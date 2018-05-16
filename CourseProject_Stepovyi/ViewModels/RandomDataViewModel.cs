@@ -8,7 +8,6 @@ namespace CourseProject_Stepovyi.ViewModels
 {
     public class RandomDataViewModel
     {
-        [Required]
         [Range(1, 15)]
         public int DotsCount { get; set; }
         [Required]
@@ -29,5 +28,13 @@ namespace CourseProject_Stepovyi.ViewModels
         [Required]
         [Range(0, 100)]
         public string y_to { get; set; }
+        [Required]
+        [Range(0, 100)]
+        public string from { get; set; }
+        [Required]
+        [Range(0, 100)]
+        public string to { get; set; }
+        public string onlyint { get; set; }
+
     }
 }

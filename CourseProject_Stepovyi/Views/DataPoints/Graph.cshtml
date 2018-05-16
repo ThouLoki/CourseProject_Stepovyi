@@ -1,16 +1,13 @@
 ﻿<h1>@ViewBag.random</h1>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    @*<link rel="stylesheet" href="~/css/StyleSheet.css.css" />*@
     <title>Index</title>
 </head>
 <body>
     <br><br>
     <div id="chartContainer"></div>
-
     <script type="text/javascript">
         var JavaScriptArray = @Html.Raw(Json.Serialize(ViewBag.DataPoints));
         var result1 = @Html.Raw(Json.Serialize(ViewBag.LeastSquare));
@@ -23,24 +20,39 @@
                 text: ""
 
                 },
+                legend: {
+                    verticalAlign: "bottom",
+                    //horizontalAlign: "left",
+                    fontSize: 20,
+                    fontFamily: "Helvetica"
+                },
 				subtitles: [
 
                     { text: "" }
-				],
+                ],
+                
                 data:
                 [
                         {
                             color:"red",
-                            type: "scatter", //change type to bar, line, area, pie, etc
-                            dataPoints: JavaScriptArray /*JavaScriptArray*/
-				    }
-                    ,{
-                        type: "line", //change type to bar, line, area, pie, etc
-                        dataPoints: result1
+                            type: "scatter",
+                            dataPoints: JavaScriptArray /*JavaScriptArray*/ 
+				    },
+                    {
+                        type: "line",
+                        legendText: "no marker",
+                        markerType: "none",
+                        showInLegend: true,
+                        legendText: "OLS",//change type to bar, line, area, pie, etc
+                       dataPoints: result1
 
                         },
                         {
-                            color:"blue",
+                            color: "blue",
+                            legendText: "no marker",
+                            markerType: "none",
+                            showInLegend: true,
+                            legendText: "Module",
                             type: "line",
                             dataPoints: result2
                         }
@@ -49,29 +61,12 @@
         chart.render();
     };
     </script>
-
-    <script>
-        var textarea = document.getElementById("Kappa");
-        var heightLimit = 200; /* Maximum height: 200px */
-        textarea.oninput = function () {
-            textarea.style.height = ""; /* Reset the height*/
-            textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
-        };
-    </script>
-    <script>
-        var textarea = document.getElementById("Kappa");
-        var heightLimit = 200; /* Maximum height: 200px */
-        textarea.oninput = function () {
-            textarea.style.height = ""; /* Reset the height*/
-            textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
-        };
-    </script><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <h4>OLS error = @ViewBag.Error</h4><br />
-    <h4>k_least = @ViewBag.k_least</h4><br />
-    <h4>b_least = @ViewBag.b_least</h4><br />
-    <h4>Module error = @ViewBag.ModuleError</h4><br />
-    <h4>k_module = @ViewBag.k_module</h4><br />
-    <h4>b_module = @ViewBag.b_module</h4><br />
-
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <h4>OLS error = @ViewBag.Error</h4>
+    <h4>k_least = @ViewBag.k_least</h4>
+    <h4>b_least = @ViewBag.b_least</h4>
+    <h4>Module error = @ViewBag.ModuleError</h4>
+    <h4>k_module = @ViewBag.k_module</h4>
+    <h4>b_module = @ViewBag.b_module</h4>
 </body>
 </html>

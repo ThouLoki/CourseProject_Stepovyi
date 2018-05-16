@@ -1,0 +1,63 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Small spread</title>
+</head>
+<body>
+    <br><br>
+    <div id="chartContainer"></div>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "theme2",
+				animationEnabled: true,
+				title: {
+                    text: "Data was generated randomly with small spread"
+                    , margin: 15
+                },
+                legend: {
+                    verticalAlign: "bottom",
+                    fontColor: "#204e99",
+                    fontSize: 16,
+                    fontFamily: "Helvetica"
+                },
+				subtitles: [
+
+                    { text: "start point (0.1; 0.1) with random data addition from 0.1 to 1.1", margin: 15, fontSize:20 }
+                ],
+                axisX: {
+                    title: "Number of input dots"
+                },
+                axisY: {
+                    title: "Number of iterations"
+                },
+                data:
+                [
+                        {
+                            type: "line",
+                            showInLegend: true,
+                            legendText: "OLS algorithm",//change type to bar, line, area, pie, etc
+                            dataPoints: [
+                                { x: 5, y: 20 },
+                                { x: 10, y: 40 },
+                                { x: 15, y: 60 },
+                                { x: 20, y: 80 },
+                                { x: 25, y: 100 },
+                                { x: 30, y: 120 },
+                                { x: 35, y: 140 },
+
+                            ]
+                        }
+
+				]
+			});
+        chart.render();
+    };
+    </script>
+</body>
+</html>

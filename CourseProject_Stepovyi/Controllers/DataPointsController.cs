@@ -29,13 +29,28 @@ namespace CourseProject_Stepovyi.Controllers
         {
             return View();
         }
+
+        public IActionResult ComplexitySmall()
+        {
+            return View();
+        }
+
+        public IActionResult ComplexityBig()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult RandomData(RandomDataViewModel rnd)
+        public IActionResult RandomData(RandomDataViewModel rnd,int kappa)
         {
+            if (rnd.DotsCount == 0)
+            {
+                TempData["data"] = "Amount of Dots can be integer only";
+                return RedirectToAction("RandomData",rnd);
+            }
+            ViewBag.kappa = "asdasd";    
             Random random = new Random();
             //rnd.x_start_point.Replace(".", ",");
-
             char dummyChar = '&'; //here put a char that you know won't appear in the strings
             rnd.x_start_point = rnd.x_start_point.Replace('.', dummyChar)
                                    .Replace(',', '.')
@@ -43,16 +58,22 @@ namespace CourseProject_Stepovyi.Controllers
             rnd.y_start_point = rnd.y_start_point.Replace('.', dummyChar)
                                    .Replace(',', '.')
                                    .Replace(dummyChar, ',');
-            rnd.x_from = rnd.x_from.Replace('.', dummyChar)
+            //rnd.x_from = rnd.x_from.Replace('.', dummyChar)
+            //                       .Replace(',', '.')
+            //                       .Replace(dummyChar, ',');
+            //rnd.x_to = rnd.x_to.Replace('.', dummyChar)
+            //                       .Replace(',', '.')
+            //                       .Replace(dummyChar, ',');
+            //rnd.y_from = rnd.y_from.Replace('.', dummyChar)
+            //                       .Replace(',', '.')
+            //                       .Replace(dummyChar, ',');
+            //rnd.y_to = rnd.y_to.Replace('.', dummyChar)
+            //                       .Replace(',', '.')
+            //                       .Replace(dummyChar, ',');
+            rnd.from = rnd.from.Replace('.', dummyChar)
                                    .Replace(',', '.')
                                    .Replace(dummyChar, ',');
-            rnd.x_to = rnd.x_to.Replace('.', dummyChar)
-                                   .Replace(',', '.')
-                                   .Replace(dummyChar, ',');
-            rnd.y_from = rnd.y_from.Replace('.', dummyChar)
-                                   .Replace(',', '.')
-                                   .Replace(dummyChar, ',');
-            rnd.y_to = rnd.y_to.Replace('.', dummyChar)
+            rnd.to = rnd.to.Replace('.', dummyChar)
                                    .Replace(',', '.')
                                    .Replace(dummyChar, ',');
             List<DataPoint> temp2 = new List<DataPoint> { };
@@ -61,26 +82,13 @@ namespace CourseProject_Stepovyi.Controllers
             temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
             for (int i = 0; i < rnd.DotsCount-1; i++)
             {
-                rndtempx += Math.Round(random.NextDouble(Convert.ToDouble(rnd.x_from), Convert.ToDouble(rnd.x_to)), 3);
-                rndtempy += Math.Round(random.NextDouble(Convert.ToDouble(rnd.y_from), Convert.ToDouble(rnd.y_to)), 3);
+                rndtempx += Math.Round(random.NextDouble(Convert.ToDouble(rnd.from), Convert.ToDouble(rnd.to)), 3);
+                rndtempy += Math.Round(random.NextDouble(Convert.ToDouble(rnd.from), Convert.ToDouble(rnd.to)), 3);
                 temp2.Add(new DataPoint { x = rndtempx, y = rndtempy });
             }
             _context.DataPoint.AddRange(temp2);
             _context.SaveChanges();
             return RedirectToAction("Index");
-            //Random random = new Random();
-            //List<DataPoint> temp2 = new List<DataPoint> { };
-            //decimal rndtempx = rnd.x_start_point;
-            //decimal rndtempy = rnd.y_start_point;
-            //for (int i = 0; i < rnd.DotsCount; i++)
-            //{
-            //    rndtempx += Convert.ToDecimal(Math.Round(random.NextDouble(Convert.ToDouble(rnd.x_from), Convert.ToDouble(rnd.x_to)), 3));
-            //    rndtempy += Convert.ToDecimal(Math.Round(random.NextDouble(Convert.ToDouble(rnd.y_from), Convert.ToDouble(rnd.y_to)), 3));
-            //    temp2.Add(new DataPoint { x = Convert.ToDouble(rndtempx), y = Convert.ToDouble(rndtempy) });
-            //}
-            //_context.DataPoint.AddRange(temp2);
-            //_context.SaveChanges();
-            //return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Graph()
