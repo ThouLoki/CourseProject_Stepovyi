@@ -94,6 +94,7 @@ namespace CourseProject_Stepovyi.Controllers
         public IActionResult Graph()
         {
             double error = 0,error_module=0,k_least,b_least;
+            long olstime,moduletime;
             double k_module=0, b_module=0;
             List<DataPoint> temp = new List<DataPoint> { };
             List<DataPoint> temp1 = new List<DataPoint> { };
@@ -101,8 +102,8 @@ namespace CourseProject_Stepovyi.Controllers
             temp = _context.DataPoint.ToList<DataPoint>();
             if (temp.Count() == 0)
                 return RedirectToAction("Index");
-            temp1 = Models.Methods.LeastSquare(temp, out error,out k_least, out b_least);
-            temp2 = Models.Methods.Module(temp, out k_module, out b_module,out error_module);
+            temp1 = Models.Methods.LeastSquare(temp, out error,out k_least, out b_least,out olstime);
+            temp2 = Models.Methods.Module(temp, out k_module, out b_module,out error_module,out moduletime);
             ViewBag.LeastSquare = temp1;
             ViewBag.Module = temp2;
             ViewBag.DataPoints = temp;
@@ -111,7 +112,9 @@ namespace CourseProject_Stepovyi.Controllers
             ViewBag.b_least = b_least;
             ViewBag.k_module = k_module;
             ViewBag.b_module = b_module;
+            ViewBag.ols_time = olstime;
             ViewBag.ModuleError = error_module;
+            ViewBag.module_time = moduletime;
             return View();
         }
 

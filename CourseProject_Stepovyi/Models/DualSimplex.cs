@@ -79,7 +79,7 @@ namespace CourseProject_Stepovyi.Models
 
         private static void Jordan(int ix, int jx)
         {
-            double[,] d = new double[n*n, m*m];
+            double[,] d = new double[30*n, 30*m];
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < m; j++)
                 {

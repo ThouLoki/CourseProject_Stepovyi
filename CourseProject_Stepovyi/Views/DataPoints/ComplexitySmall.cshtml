@@ -9,15 +9,73 @@
 </head>
 <body>
     <br><br>
-    <div id="chartContainer"></div>
-
+    <div id="chartContainer1"></div>
     <script type="text/javascript">
         window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
+            var chart = new CanvasJS.Chart("chartContainer1",
+                {
+                    theme: "theme2",
+                    animationEnabled: true,
+                    title: {
+                        text: "Module algorithm"
+                        , margin: 15
+                    },
+                    legend: {
+                        verticalAlign: "bottom",
+                        fontColor: "#204e99",
+                        fontSize: 16,
+                        fontFamily: "Helvetica"
+                    },
+                    subtitles: [
+
+                        { text: "start point (0.1; 0.1) with random data addition from 0.1 to 1.1 for small spread,\t from 0 to 6 for big spread", margin: 15, fontSize: 20 }
+                    ],
+                    axisX: {
+                        title: "Number of input dots"
+                    },
+                    axisY: {
+                        title: "Time, ms"
+                    },
+                    data:
+                        [
+                            {
+                                type: "spline",
+                                showInLegend: true,
+                                legendText: "small spread",
+                                markerType: "none",
+                                dataPoints: [
+                                    { x: 50, y: 40 },
+                                    { x: 100, y: 300 },
+                                    { x: 150, y: 800 },
+                                    { x: 200, y: 1400 },
+                                    { x: 250, y: 4100 },
+                                    { x: 300, y: 17000 }
+
+                                ]
+                            },
+                            {
+                                type: "spline",
+                                showInLegend: true,
+                                color:"green",
+                                legendText: "big spread",
+                                markerType: "none",
+                                dataPoints: [
+                                    { x: 50, y: 380 },
+                                    { x: 100, y: 1200 },
+                                    { x: 150, y: 2800 },
+                                    { x: 200, y: 11536 },
+                                    { x: 250, y: 23500 },
+                                    { x: 300, y: 58100 }
+                                ]
+                            }
+
+                        ]
+                });
+            var chart1 = new CanvasJS.Chart("chartContainer2", {
                 theme: "theme2",
-				animationEnabled: true,
-				title: {
-                    text: "Data was generated randomly with small spread"
+                animationEnabled: true,
+                title: {
+                    text: "Ordinary least squares algorithm"
                     , margin: 15
                 },
                 legend: {
@@ -26,38 +84,43 @@
                     fontSize: 16,
                     fontFamily: "Helvetica"
                 },
-				subtitles: [
+                subtitles: [
 
-                    { text: "start point (0.1; 0.1) with random data addition from 0.1 to 1.1", margin: 15, fontSize:20 }
+                    { text: "covers both small and big spread as data doesn't change", margin: 15, fontSize: 20 }
                 ],
                 axisX: {
                     title: "Number of input dots"
                 },
                 axisY: {
-                    title: "Number of iterations"
+                    title: "Time, ms"
                 },
                 data:
-                [
+                    [
+
                         {
-                            type: "line",
+                            type: "spline",
+                            color: "red",
                             showInLegend: true,
-                            legendText: "OLS algorithm",//change type to bar, line, area, pie, etc
+                            legendText: "ols algorithm",
+                            markerType: "none",
                             dataPoints: [
-                                { x: 5, y: 20 },
-                                { x: 10, y: 40 },
-                                { x: 15, y: 60 },
-                                { x: 20, y: 80 },
-                                { x: 25, y: 100 },
-                                { x: 30, y: 120 },
-                                { x: 35, y: 140 },
+                                { x: 10000, y: 2 },
+                                { x: 20000, y: 5 },
+                                { x: 50000, y: 7 },
+                                { x: 100000, y: 16 }
 
                             ]
+
                         }
 
-				]
-			});
-        chart.render();
-    };
+                    ]
+            });
+            chart.render();
+            chart1.render();
+        };
     </script>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div id="chartContainer2"></div>
+    <br /><br />
 </body>
-</html>
+</html >

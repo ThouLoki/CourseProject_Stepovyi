@@ -9,9 +9,9 @@ namespace CourseProject_Stepovyi.Models
 {
     static class Methods
     {
-        public static List<DataPoint> LeastSquare(List<DataPoint> points, out double err_x, out double k, out double b)
+        public static List<DataPoint> LeastSquare(List<DataPoint> points, out double err_x, out double k, out double b, out long ols_time)
         {
-
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             double sum_xy = 0, sum_x = 0, sum_y = 0, sum_x2 = 0, max_x = points.Last().x;
             err_x = 0;
             foreach(var a in points)
@@ -38,14 +38,14 @@ namespace CourseProject_Stepovyi.Models
             p2.x = max_x;
             p2.y = max_x * k + b;
             result.Add(p2);
-            //Console.WriteLine("k = {0}, b = {1}", k, b);
-
+            watch.Stop();
+            ols_time = watch.ElapsedMilliseconds;
             return result;
         }
 
-        public static List<DataPoint> Module(List<DataPoint> points, out double k, out double b, out double err_m)
+        public static List<DataPoint> Module(List<DataPoint> points, out double k, out double b, out double err_m, out long module_time)
         {
-
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             int n = points.Count;
             double[,] table = new double[2 * n + 1, n + 3];
             double max_x = points[0].x;
@@ -85,8 +85,8 @@ namespace CourseProject_Stepovyi.Models
             p2.x = max_x;
             p2.y = max_x * k + b;
             ans.Add(p2);
-
-
+            watch.Stop();
+            module_time = watch.ElapsedMilliseconds;
             return ans;
         }
     }
